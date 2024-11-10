@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.js";
+import audiobookRouter from "./routes/audiobook.js";
 import cors from "cors";
+
 
 //connection to database
 await mongoose.connect(process.env.MONGO_URI);
@@ -15,6 +17,7 @@ app.use(express.json());
 //routers 
 app.use(cors());
 app.use(userRouter);
+app.use(audiobookRouter);
 
 //port listening
 const PORT =3100;

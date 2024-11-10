@@ -48,16 +48,16 @@ export const addLogin = async (req, res, next) => {
         }
         //sign a token for the user
         const token = jwt.sign(
-            { id: user.id },
+            { id: user.id, admin: user.admin }, // Include amin in the token payload
             process.env.JWT_PRIVATE_KEY,
             { expiresIn: '24h' }
         );
+
         //respond to request
         res.json({
             message: 'user logged in!',
             accessToken: token
         });
-        res.json('logged in successfully');
     } catch (error) {
         next(error);
     }
@@ -68,7 +68,6 @@ export const getProfile = async(req, res, next) => {
         // find authenticated user from database
         const user = await UserModel.findById(req.auth.id).select({ password: false });
         res.json(user);
-        return res.json(userProfile);
     } catch (error) {
       next(error); 
     }
@@ -93,14 +92,6 @@ export const deleteUser = async(req, res, next) => {
         next(error);
     }
 }
-
-// export const updatedProfile = (req, res, next) => {
-//     try {
-//         return res.json('user profile updated')
-//     } catch (error) {
-
-//     }
-// }
 
 export const updatedProfile = async (req, res, next) => {
     try {
