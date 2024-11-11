@@ -4,7 +4,7 @@ const audiobookSchema = new Schema({
     title: { type: String, required: true },
     author: { type: String, required: true },
     narrator: { type: String },
-    duration: { type: Number, required: true }, // duration in minutes
+    duration: { type: Number }, // duration in minutes
     genre: { type: String },
     description: { type: String },
     language: { type: String, required: true },

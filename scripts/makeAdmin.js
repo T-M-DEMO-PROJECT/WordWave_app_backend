@@ -18,4 +18,5 @@ const makeAdmin = async (email) => {
     }
 };
 
-makeAdmin("user@example.com").catch(console.error);
+makeAdmin("officialtheodora20@gmail.com").catch(console.error);
+makeAdmin("mawuseakosuamorttey@gmail.com").catch(console.error);

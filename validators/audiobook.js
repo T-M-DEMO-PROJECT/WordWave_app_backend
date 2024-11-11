@@ -15,7 +15,7 @@ export const addAudiobookValidator = Joi.object({
         "string.min": "Narrator must be at least 3 characters",
         "string.max": "Narrator cannot exceed 100 characters",
     }),
-    duration: Joi.number().min(1).required().messages({
+    duration: Joi.number().min(1).messages({
         "number.base": "Duration must be a number",
         "number.min": "Duration must be at least 1 minute",
         "any.required": "Duration is required",

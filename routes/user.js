@@ -9,7 +9,7 @@ userRouter.post('/users/register', addRegister);
 userRouter.post('/users/login', addLogin);
 userRouter.get('/users/oneUser', isAuthenticated, getProfile);
 userRouter.post('/users/logout', isAuthenticated, addLogout);
-userRouter.post('/users/me', isAuthenticated, userAvatarUpload.single('avatar'), updatedProfile);
+userRouter.patch('/users/me', isAuthenticated, userAvatarUpload.single('avatar'), updatedProfile);
 userRouter.delete('/users/delete', deleteUser);
 
 export default userRouter;
