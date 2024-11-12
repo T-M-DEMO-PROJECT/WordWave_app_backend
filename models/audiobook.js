@@ -11,7 +11,7 @@ const audiobookSchema = new Schema({
     releaseDate: { type: Date },
     isFeatured: { type: Boolean, default: false },
     coverImage: { type: String }, // URL for the audiobook cover
-    audioFileUrl: { type: String, required: true },
+    audioFile: { type: String, required: true },
 }, {
     timestamps: true,
 });

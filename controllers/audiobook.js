@@ -2,15 +2,57 @@ import { AudiobookModel } from "../models/audiobook.js";
 import { UserModel } from "../models/user.js";
 import { addAudiobookValidator, updateAudiobookValidator } from "../validators/audiobook.js";
 
-export const addAudiobook = async (req, res, next) => {
+// export const addAudiobook = async (req, res, next) => {
+//     try {
+//         const { error, value } = addAudiobookValidator.validate(req.body);
+//         if (error) {
+//             return res.status(422).json({ error: error.details[0].message });
+//         }
+//         // Proceed with adding the audiobook to the database
+//         const audiobook = await AudiobookModel.create(value);
+//         res.status(201).json({ message: "Audiobook added successfully", data: audiobook });
+//     } catch (error) {
+//         next(error);
+//     }
+// };
+
+export const addAudiobookWithFiles = async (req, res, next) => {
     try {
-        const { error, value } = addAudiobookValidator.validate(req.body);
-        if (error) {
-            return res.status(422).json({ error: error.details[0].message });
-        }
-        // Proceed with adding the audiobook to the database
-        const audiobook = await AudiobookModel.create(value);
-        res.status(201).json({ message: "Audiobook added successfully", data: audiobook });
+        // Process file upload first
+        audiobookUpload(req, res, async (uploadError) => {
+            if (uploadError) {
+                return res.status(400).json({ error: uploadError.message });
+            }
+
+            // Extract form data (other than files)
+            const { title, author, narrator, duration, genre, description, language, releaseDate, isFeatured } = req.body;// Validate form data
+            const { error, value } = addAudiobookValidator.validate({
+                title,
+                author,
+                narrator,
+                duration,
+                genre,
+                description,
+                language,
+                releaseDate,
+                isFeatured,
+                coverImage: req.body.coverImage, // Cover Image URL if any
+                audioFileUrl: req.file?.path, // Path to uploaded audio file
+            });
+
+            if (error) {
+                return res.status(422).json({ error: error.details[0].message });
+            }
+
+            // Save audiobook data into the database
+            const audiobook = await AudiobookModel.create(value);
+
+            // Respond to the client
+            res.status(201).json({
+                message: "Audiobook added successfully",
+                data: audiobook,
+            });
+        });
     } catch (error) {
         next(error);
     }

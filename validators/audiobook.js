@@ -41,7 +41,7 @@ export const addAudiobookValidator = Joi.object({
     coverImage: Joi.string().uri().optional().allow("").messages({
         "string.uri": "Cover Image must be a valid URL",
     }),
-    audioFileUrl: Joi.string().uri().required()
+    audioFile: Joi.string().uri().required()
 });
 
 export const updateAudiobookValidator = addAudiobookValidator.fork(
