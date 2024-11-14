@@ -73,13 +73,27 @@ export const getProfile = async(req, res, next) => {
     }
 }
 
+// export const addLogout = (req, res, next) => {
+//     try {
+//         return res.json('logged out');
+//     } catch (error) {
+//         next(error);
+//     }
+// }
+
 export const addLogout = (req, res, next) => {
     try {
-        return res.json('logged out');
+        // Optionally, clear a cookie for token storage
+        res.clearCookie("token");
+
+        return res.status(200).json({
+            message: "Successfully logged out",
+        });
     } catch (error) {
-        next(error);
+        next(error); // Forward error to middleware
     }
-}
+};
+
 
 export const deleteUser = async(req, res, next) => {
     try {

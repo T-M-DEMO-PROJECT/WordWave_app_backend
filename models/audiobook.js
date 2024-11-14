@@ -13,6 +13,7 @@ const audiobookSchema = new Schema({
     isFeatured: { type: Boolean, default: false },
     coverImage: { type: String }, // URL for the audiobook cover
     audioFile: { type: String, required: true },
+    user: { type: Types.ObjectId, ref: "User"},
 }, {
     timestamps: true,
 });
