@@ -14,28 +14,27 @@ export const userAvatarUpload = multer({
 });
 
 // Set up storage engine
-// export const audiobookUpload = multer({
-//     storage: multerSaveFilesOrg({
-//         apiAccessToken: process.env.SAVEFILESORG_API_KEY,
-//         limits: { fileSize: 1000000 }, // Limit file size to 1MB
-//         relativePath: '/audiobook-api/african/*',
-//     }),
-//     preservePath: true
-// });
+export const audiobookUpload = multer({
+    storage: multerSaveFilesOrg({
+        apiAccessToken: process.env.SAVEFILESORG_API_KEY,
+        limits: { fileSize: 1000000 }, // Limit file size to 1MB
+        relativePath: '/audiobook-api/african/*',
+    }),
+    preservePath: true
+});
 
 // Initialize upload
-// const upload = multer({
-//     storage: multerSaveFilesOrg({
-//         apiAccessToken: process.env.SAVEFILESORG_AOI_KEY,
-//         limits: { fileSize: 1000000 }, // Limit file size to 1MB
-//         fileFilter: (req, file, cb) => {
-//             checkFileType(file, cb);
-//             relativePath: '/audiobook-api/african/*'
-//         }
-//     }),
-//     // .single('audioupload'),
-//     preservePath: true
-// });
+const upload = multer({
+    storage: multerSaveFilesOrg({
+        apiAccessToken: process.env.SAVEFILESORG_AOI_KEY,
+        limits: { fileSize: 1000000 }, // Limit file size to 1MB
+        fileFilter: (req, file, cb) => {
+            checkFileType(file, cb);
+        }
+    }),
+    // .single('audioupload'),
+    preservePath: true
+});
 
 // Function to check file type
 const checkFileType = (file, cb) => {
@@ -50,14 +49,14 @@ const checkFileType = (file, cb) => {
     }
 };
 
-// Initialize `multer` upload
-export const audiobookUpload = multer({
-    storage: multerSaveFilesOrg({
-        apiAccessToken: process.env.SAVEFILESORG_API_KEY, // Fixed typo
-        relativePath: '/audiobook-api/african/', // Adjusted to valid path
-    }),
-    limits: { fileSize: 1 * 1024 * 1024 }, // Limit file size to 1MB (1 * 1024 * 1024 bytes)
-    fileFilter: (req, file, cb) => {
-        checkFileType(file, cb);
-    },
-}).single('audioFile');
+// // Initialize `multer` upload
+// export const audiobookUpload = multer({
+//     storage: multerSaveFilesOrg({
+//         apiAccessToken: process.env.SAVEFILESORG_API_KEY, // Fixed typo
+//         relativePath: '/audiobook-api/african/', // Adjusted to valid path
+//     }),
+//     // limits: { fileSize: 1 * 1024 * 1024 }, // Limit file size to 1MB (1 * 1024 * 1024 bytes)
+//     fileFilter: (req, file, cb) => {
+//         checkFileType(file, cb);
+//     },
+// }).single('audioFile');
