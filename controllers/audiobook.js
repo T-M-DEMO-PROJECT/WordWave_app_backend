@@ -1,6 +1,7 @@
 import { AudiobookModel } from "../models/audiobook.js";
 import { UserModel } from "../models/user.js";
 import { addAudiobookValidator, updateAudiobookValidator } from "../validators/audiobook.js";
+import { audiobookUpload } from "../middlewares/upload.js";
 
 // export const addAudiobook = async (req, res, next) => {
 //     try {
