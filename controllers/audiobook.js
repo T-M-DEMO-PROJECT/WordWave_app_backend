@@ -18,14 +18,16 @@ import { addAudiobookValidator, updateAudiobookValidator } from "../validators/a
 
 export const addAudiobookWithFiles = async (req, res, next) => {
     try {
-        // Process file upload first
+        // Process file upload
         audiobookUpload(req, res, async (uploadError) => {
             if (uploadError) {
                 return res.status(400).json({ error: uploadError.message });
             }
 
-            // Extract form data (other than files)
-            const { title, author, narrator, duration, genre, description, language, releaseDate, isFeatured } = req.body;// Validate form data
+            // Extract form data
+            const { title, author, narrator, duration, genre, description, language, releaseDate, isFeatured } = req.body;
+
+            // Validate form data
             const { error, value } = addAudiobookValidator.validate({
                 title,
                 author,
@@ -35,8 +37,8 @@ export const addAudiobookWithFiles = async (req, res, next) => {
                 description,
                 language,
                 releaseDate,
-                isFeatured,
-                coverImage: req.body.coverImage, // Cover Image URL if any
+                isFeatured: isFeatured === "true", // Convert string to boolean if required
+                coverImage: req.body.coverImage, // Cover Image URL if provided
                 audioFileUrl: req.file?.path, // Path to uploaded audio file
             });
 
@@ -44,10 +46,9 @@ export const addAudiobookWithFiles = async (req, res, next) => {
                 return res.status(422).json({ error: error.details[0].message });
             }
 
-            // Save audiobook data into the database
+            // Save audiobook data to the database
             const audiobook = await AudiobookModel.create(value);
 
-            // Respond to the client
             res.status(201).json({
                 message: "Audiobook added successfully",
                 data: audiobook,
@@ -57,6 +58,7 @@ export const addAudiobookWithFiles = async (req, res, next) => {
         next(error);
     }
 };
+
 
 export const listAudiobooks = async (req, res, next) => {
     try {

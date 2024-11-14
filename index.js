@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(cors());
 app.use(userRouter);
 app.use(audiobookRouter);
-app.use(vocabularyRouter);
 
 //port listening
 const PORT =3100;
