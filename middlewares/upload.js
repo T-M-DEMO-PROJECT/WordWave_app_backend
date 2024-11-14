@@ -60,4 +60,4 @@ export const audiobookUpload = multer({
     fileFilter: (req, file, cb) => {
         checkFileType(file, cb);
     },
-}).single('audioupload');
+}).single('audioFile');
