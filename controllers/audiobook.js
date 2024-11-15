@@ -8,9 +8,9 @@ export const addAudiobook = async (req, res, next) => {
         const { error, value } = addAudiobookValidator.validate({...req.body, audioFile: req.file?.filename
         });
         // Proceed with adding the audiobook to the database
-        const audiobook = await AudiobookModel.create({...value, user: req.auth.id});
+        await AudiobookModel.create({...value, user: req.auth.id});
         //Respond to request
-        return res.status(201).json({ message: "Audiobook added successfully", data: audiobook });
+        return res.status(201).json({ message: "Audiobook added successfully", data: value.audiobook });
     } catch (error) {
         next(error);
     }

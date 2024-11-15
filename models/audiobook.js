@@ -1,5 +1,5 @@
 import { toJSON } from "@reis/mongoose-to-json";
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const audiobookSchema = new Schema({
     title: { type: String, required: true },

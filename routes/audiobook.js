@@ -5,7 +5,7 @@ import { audiobookUpload } from "../middlewares/upload.js";
 
 const audiobookRouter = Router();
 
-audiobookRouter.post('/audiobooks', isAuthenticated, admin, addAudiobook);
+audiobookRouter.post('/audiobooks', isAuthenticated, admin, audiobookUpload.single('audioFile'), addAudiobook);
 audiobookRouter.patch('/audiobooks/:id', isAuthenticated, admin, updateAudiobook);
 audiobookRouter.get('/audiobooks', listAudiobooks);
 audiobookRouter.post('/audiobooks/review', isAuthenticated, addReview);
