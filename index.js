@@ -2,7 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.js";
 import audiobookRouter from "./routes/audiobook.js";
+import vocabularyRouter from "./routes/vocabulary.js";
 import cors from "cors";
+
 
 
 //connection to database
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(cors());
 app.use(userRouter);
 app.use(audiobookRouter);
+app.use(vocabularyRouter);
 
 //port listening
 const PORT =3100;

@@ -105,7 +105,7 @@ export const deleteUser = async(req, res, next) => {
     } catch (error) {
         next(error);
     }
-}
+};
 
 export const updatedProfile = async (req, res, next) => {
     try {
@@ -115,7 +115,7 @@ export const updatedProfile = async (req, res, next) => {
         const updates = {};
         if (name) updates.name = name;
         if (email) updates.email = email;
-        if (password) updates.password = bcrypt.hashSync(password, 10);
+        if (password) updates.password = bcrypt.hashSync(password, 20);
 
         const updatedUser = await UserModel.findByIdAndUpdate(
             req.auth.id,

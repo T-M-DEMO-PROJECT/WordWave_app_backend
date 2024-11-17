@@ -60,3 +60,25 @@
 //     ["word", "definition", "partOfSpeech"],
 //     (schema) => schema.optional()
 // );
+
+import Joi from "joi";
+
+export const addVocabularyValidator = Joi.object({
+    word: Joi.string().required().messages({
+        "string.empty": "Word is required",
+    }),
+    meaning: Joi.string().required().messages({
+        "string.empty": "Meaning is required",
+    }),
+    exampleSentence: Joi.string().required().messages({
+        "string.empty": "Example sentence is required",
+    }),
+    audiobookId: Joi.string()
+        .required()
+        .regex(/^[0-9a-fA-F]{24}$/)
+        .messages({
+            "string.pattern.base": "Invalid audiobook ID format",
+            "string.empty": "Audiobook ID is required",
+        }),
+});
+

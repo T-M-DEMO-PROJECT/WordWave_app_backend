@@ -41,3 +41,36 @@
 
 // // Create and export Vocabulary model
 // export const VocabularyModel = model("Vocabulary", vocabularySchema);
+
+import { Schema, model, Types } from "mongoose";
+
+const VocabularySchema = new Schema(
+    {
+        word: {
+            type: String,
+            required: [true, "Word is required"],
+            unique: true,
+        },
+        meaning: {
+            type: String,
+            required: [true, "Meaning is required"],
+        },
+        exampleSentence: {
+            type: String,
+            required: [true, "Example sentence is required"],
+        },
+        audiobook: {
+            type: Types.ObjectId,
+            ref: "Audiobook",
+            required: [true, "Audiobook ID is required"],
+        },
+        user: {
+            type: Types.ObjectId,
+            ref: "User",
+            required: [true, "User ID is required"],
+        },
+    },
+    { timestamps: true }
+);
+
+export const VocabularyModel = model("Vocabulary", VocabularySchema);

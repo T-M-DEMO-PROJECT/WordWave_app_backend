@@ -1,14 +1,15 @@
 import { Router } from "express";
-import { listAudiobooks,updateAudiobook, addAudiobook, addReview } from "../controllers/audiobook.js";
-import { isAuthenticated, admin } from "../middlewares/auth.js";
+import { addAudiobook, listAudiobooks, updateAudiobook, getAudiobookById, addReview } from "../controllers/audiobook.js";
+import { isAuthenticated, author } from "../middlewares/auth.js";
 import { audiobookUpload } from "../middlewares/upload.js";
 
 const audiobookRouter = Router();
 
-audiobookRouter.post('/audiobooks', isAuthenticated, admin, audiobookUpload.single('audioFile'), addAudiobook);
-audiobookRouter.patch('/audiobooks/:id', isAuthenticated, admin, updateAudiobook);
+audiobookRouter.post('/audiobooks', isAuthenticated, author, audiobookUpload.single('audioFile'), addAudiobook);
+audiobookRouter.patch('/audiobooks/:id', isAuthenticated, author, updateAudiobook);
 audiobookRouter.get('/audiobooks', listAudiobooks);
-audiobookRouter.post('/audiobooks/review', isAuthenticated, addReview);
+audiobookRouter.get("/audiobooks/:id", getAudiobookById);
+audiobookRouter.post('/audiobooks/review', addReview);
 
 // audiobookRouter.post('/audiobooks/upload', audiobookUpload, (req, res) => {
 //     if (!req.file) {

@@ -5,8 +5,8 @@ export const isAuthenticated = expressjwt({
     requestProperty: 'auth',
 });
 
-export const admin = (req, res, next) => {
-    if (!req.auth || !req.auth.admin) {
+export const author = (req, res, next) => {
+    if (!req.auth || !req.auth.author) {
         return res.status(403).json({ error: "Access denied. Admins only." });
     }
     next();
