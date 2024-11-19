@@ -1,32 +1,147 @@
 [
-    { "word": "Serendipity", "definition": "Finding something good without looking for it." },
-    { "word": "Ephemeral", "definition": "Lasting for a very short time." },
-    { "word": "Euphoria", "definition": "A feeling of intense happiness and excitement." },
-    { "word": "Ineffable", "definition": "Too great or extreme to be expressed in words." },
-    { "word": "Mellifluous", "definition": "Pleasantly smooth and musical to hear." },
-    { "word": "Petrichor", "definition": "The pleasant, earthy smell after rain." },
-    { "word": "Quintessential", "definition": "Representing the most perfect or typical example of something." },
-    { "word": "Limerence", "definition": "The state of being infatuated or obsessed with another person." },
-    { "word": "Solitude", "definition": "The state of being alone, often in a peaceful way." },
-    { "word": "Sonorous", "definition": "Capable of producing a deep, resonant sound." },
-    { "word": "Ethereal", "definition": "Extremely delicate and light in a way that seems not of this world." },
-    { "word": "Halcyon", "definition": "Denoting a period of time in the past that was idyllically happy and peaceful." },
-    { "word": "Luminous", "definition": "Full of or shedding light; bright or shining." },
-    { "word": "Zenith", "definition": "The time at which something is most powerful or successful." },
-    { "word": "Ambivalence", "definition": "The state of having mixed feelings or contradictory ideas about something or someone." },
-    { "word": "Iridescent", "definition": "Showing luminous colors that seem to change when seen from different angles." },
-    { "word": "Resilience", "definition": "The capacity to recover quickly from difficulties." },
-    { "word": "Solace", "definition": "Comfort or consolation in a time of distress or sadness." },
-    { "word": "Equanimity", "definition": "Mental calmness, composure, and evenness of temper, especially in a difficult situation." },
-    { "word": "Ebullient", "definition": "Cheerful and full of energy." },
-    { "word": "Bucolic", "definition": "Relating to the pleasant aspects of the countryside and country life." },
-    { "word": "Pulchritude", "definition": "Beauty." },
-    { "word": "Raconteur", "definition": "A person who tells anecdotes in a skillful and amusing way." },
-    { "word": "Sagacious", "definition": "Having or showing keen mental discernment and good judgment." },
-    { "word": "Inequitable", "definition": "Unfair; not equitable or impartial." },
-    { "word": "Pluviophile", "definition": "A lover of rain; someone who finds joy and peace during rainy days." },
-    { "word": "Aesthetic", "definition": "Concerned with beauty or the appreciation of beauty." },
-    { "word": "Ecliptic", "definition": "Relating to an eclipse or to the apparent path of the sun and planets." },
-    { "word": "Vicarious", "definition": "Experienced in the imagination through the feelings or actions of another person." }
+    {
+        "word": "Serendipity",
+        "definition": "Finding something good without looking for it.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Ephemeral",
+        "definition": "Lasting for a very short time.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Euphoria",
+        "definition": "A feeling of intense happiness and excitement.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Ineffable",
+        "definition": "Too great or extreme to be expressed in words.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Mellifluous",
+        "definition": "Pleasantly smooth and musical to hear.",
+        "category": "Sound"
+    },
+    {
+        "word": "Petrichor",
+        "definition": "The pleasant, earthy smell after rain.",
+        "category": "Nature"
+    },
+    {
+        "word": "Quintessential",
+        "definition": "Representing the most perfect or typical example of something.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Limerence",
+        "definition": "The state of being infatuated or obsessed with another person.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Solitude",
+        "definition": "The state of being alone, often in a peaceful way.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Sonorous",
+        "definition": "Capable of producing a deep, resonant sound.",
+        "category": "Sound"
+    },
+    {
+        "word": "Ethereal",
+        "definition": "Extremely delicate and light in a way that seems not of this world.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Halcyon",
+        "definition": "Denoting a period of time in the past that was idyllically happy and peaceful.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Luminous",
+        "definition": "Full of or shedding light; bright or shining.",
+        "category": "Nature"
+    },
+    {
+        "word": "Zenith",
+        "definition": "The time at which something is most powerful or successful.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Ambivalence",
+        "definition": "The state of having mixed feelings or contradictory ideas about something or someone.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Iridescent",
+        "definition": "Showing luminous colors that seem to change when seen from different angles.",
+        "category": "Nature"
+    },
+    {
+        "word": "Resilience",
+        "definition": "The capacity to recover quickly from difficulties.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Solace",
+        "definition": "Comfort or consolation in a time of distress or sadness.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Equanimity",
+        "definition": "Mental calmness, composure, and evenness of temper, especially in a difficult situation.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Ebullient",
+        "definition": "Cheerful and full of energy.",
+        "category": "Emotion"
+    },
+    {
+        "word": "Bucolic",
+        "definition": "Relating to the pleasant aspects of the countryside and country life.",
+        "category": "Nature"
+    },
+    {
+        "word": "Pulchritude",
+        "definition": "Beauty.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Raconteur",
+        "definition": "A person who tells anecdotes in a skillful and amusing way.",
+        "category": "Other"
+    },
+    {
+        "word": "Sagacious",
+        "definition": "Having or showing keen mental discernment and good judgment.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Inequitable",
+        "definition": "Unfair; not equitable or impartial.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Pluviophile",
+        "definition": "A lover of rain; someone who finds joy and peace during rainy days.",
+        "category": "Nature"
+    },
+    {
+        "word": "Aesthetic",
+        "definition": "Concerned with beauty or the appreciation of beauty.",
+        "category": "Abstract Concept"
+    },
+    {
+        "word": "Ecliptic",
+        "definition": "Relating to an eclipse or to the apparent path of the sun and planets.",
+        "category": "Nature"
+    },
+    {
+        "word": "Vicarious",
+        "definition": "Experienced in the imagination through the feelings or actions of another person.",
+        "category": "Abstract Concept"
+    }
 ]
-

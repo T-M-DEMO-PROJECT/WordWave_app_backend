@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { addRegister, addLogin, getProfile, addLogout, updatedProfile, deleteUser} from "../controllers/user.js";
+import { addRegister, addLogin, getProfile, addLogout, updatedProfile, deleteUser, updateStreak } from "../controllers/user.js";
 import { userAvatarUpload } from "../middlewares/upload.js";
-import { isAuthenticated, updateStreak } from "../middlewares/auth.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
 const userRouter = Router();
 
