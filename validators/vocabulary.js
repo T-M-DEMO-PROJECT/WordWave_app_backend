@@ -73,6 +73,45 @@ export const addVocabularyValidator = Joi.object({
     exampleSentence: Joi.string().required().messages({
         "string.empty": "Example sentence is required",
     }),
+    partOfSpeech: Joi.string()
+        .valid(
+            "noun",
+            "verb",
+            "adjective",
+            "adverb",
+            "pronoun",
+            "preposition",
+            "conjunction",
+            "interjection",
+            "other"
+        )
+        .required()
+        .messages({
+            "any.required": "Part of speech is required.",
+            "any.only": "Part of speech must be one of noun, verb, adjective, adverb, pronoun, preposition, conjunction, interjection, or other.",
+        }),
+
+    pronunciation: Joi.string()
+        .max(100)
+        .optional()
+        .allow("")
+        .messages({
+            "string.max": "Pronunciation cannot exceed 100 characters.",}),
+    synonyms: Joi.array()
+        .items(Joi.string().max(50))
+        .default([])
+        .messages({
+            "array.base": "Synonyms must be an array of strings.",
+            "string.max": "Each synonym cannot exceed 50 characters.",
+        }),
+
+    antonyms: Joi.array()
+        .items(Joi.string().max(50))
+        .default([])
+        .messages({
+            "array.base": "Antonyms must be an array of strings.",
+            "string.max": "Each antonym cannot exceed 50 characters.",
+        }),
     audiobookId: Joi.string()
         .required()
         .regex(/^[0-9a-fA-F]{24}$/)

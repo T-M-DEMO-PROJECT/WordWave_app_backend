@@ -2,146 +2,101 @@
     {
         "word": "Serendipity",
         "definition": "Finding something good without looking for it.",
-        "category": "Emotion"
+        "category": "Emotion",
+        "example": "It was pure serendipity that she found her dream job while on vacation.",
+        "synonyms": ["fluke", "chance", "fortune"],
+        "antonyms": ["misfortune", "bad luck"],
+        "part_of_speech": "noun",
+        "pronunciation": "/seh-ruhn-DIP-uh-tee/"
     },
     {
         "word": "Ephemeral",
         "definition": "Lasting for a very short time.",
-        "category": "Abstract Concept"
+        "category": "Abstract Concept",
+        "example": "The beauty of a sunset is ephemeral, lasting only a few moments.",
+        "synonyms": ["transient", "fleeting", "momentary"],
+        "antonyms": ["permanent", "eternal", "lasting"],
+        "part_of_speech": "adjective",
+        "pronunciation": "/ih-FEM-er-uhl/"
     },
     {
         "word": "Euphoria",
         "definition": "A feeling of intense happiness and excitement.",
-        "category": "Emotion"
+        "category": "Emotion",
+        "example": "He was in a state of euphoria after winning the lottery.",
+        "synonyms": ["elation", "joy", "bliss"],
+        "antonyms": ["misery", "depression", "despair"],
+        "part_of_speech": "noun",
+        "pronunciation": "/yoo-FOR-ee-uh/"
     },
     {
         "word": "Ineffable",
         "definition": "Too great or extreme to be expressed in words.",
-        "category": "Abstract Concept"
+        "category": "Abstract Concept",
+        "example": "The view from the mountaintop was of ineffable beauty.",
+        "synonyms": ["indescribable", "unspeakable", "unutterable"],
+        "antonyms": ["expressible", "definable"],
+        "part_of_speech": "adjective",
+        "pronunciation": "/in-EFF-uh-buhl/"
     },
     {
         "word": "Mellifluous",
         "definition": "Pleasantly smooth and musical to hear.",
-        "category": "Sound"
+        "category": "Sound",
+        "example": "Her mellifluous voice enchanted the audience.",
+        "synonyms": ["harmonious", "melodic", "sweet-sounding"],
+        "antonyms": ["harsh", "discordant"],
+        "part_of_speech": "adjective",
+        "pronunciation": "/meh-LIF-loo-uhs/"
     },
     {
         "word": "Petrichor",
         "definition": "The pleasant, earthy smell after rain.",
-        "category": "Nature"
+        "category": "Nature",
+        "example": "After the storm passed, the petrichor filled the air.",
+        "synonyms": ["earthy scent", "rain aroma"],
+        "antonyms": ["odorless"],
+        "part_of_speech": "noun",
+        "pronunciation": "/PEH-tri-kor/"
     },
     {
         "word": "Quintessential",
         "definition": "Representing the most perfect or typical example of something.",
-        "category": "Abstract Concept"
+        "category": "Abstract Concept",
+        "example": "She is the quintessential professional, always punctual and prepared.",
+        "synonyms": ["perfect", "ideal", "typical"],
+        "antonyms": ["atypical", "imperfect"],
+        "part_of_speech": "adjective",
+        "pronunciation": "/kwin-tuh-SEN-shuhl/"
     },
     {
         "word": "Limerence",
         "definition": "The state of being infatuated or obsessed with another person.",
-        "category": "Emotion"
+        "category": "Emotion",
+        "example": "Her limerence for him faded once she got to know him better.",
+        "synonyms": ["infatuation", "obsession"],
+        "antonyms": ["indifference"],
+        "part_of_speech": "noun",
+        "pronunciation": "/LIM-er-uhns/"
     },
     {
         "word": "Solitude",
         "definition": "The state of being alone, often in a peaceful way.",
-        "category": "Emotion"
+        "category": "Emotion",
+        "example": "He enjoyed the solitude of the mountains.",
+        "synonyms": ["isolation", "seclusion", "peace"],
+        "antonyms": ["company", "togetherness"],
+        "part_of_speech": "noun",
+        "pronunciation": "/SAH-li-tood/"
     },
     {
         "word": "Sonorous",
         "definition": "Capable of producing a deep, resonant sound.",
-        "category": "Sound"
-    },
-    {
-        "word": "Ethereal",
-        "definition": "Extremely delicate and light in a way that seems not of this world.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Halcyon",
-        "definition": "Denoting a period of time in the past that was idyllically happy and peaceful.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Luminous",
-        "definition": "Full of or shedding light; bright or shining.",
-        "category": "Nature"
-    },
-    {
-        "word": "Zenith",
-        "definition": "The time at which something is most powerful or successful.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Ambivalence",
-        "definition": "The state of having mixed feelings or contradictory ideas about something or someone.",
-        "category": "Emotion"
-    },
-    {
-        "word": "Iridescent",
-        "definition": "Showing luminous colors that seem to change when seen from different angles.",
-        "category": "Nature"
-    },
-    {
-        "word": "Resilience",
-        "definition": "The capacity to recover quickly from difficulties.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Solace",
-        "definition": "Comfort or consolation in a time of distress or sadness.",
-        "category": "Emotion"
-    },
-    {
-        "word": "Equanimity",
-        "definition": "Mental calmness, composure, and evenness of temper, especially in a difficult situation.",
-        "category": "Emotion"
-    },
-    {
-        "word": "Ebullient",
-        "definition": "Cheerful and full of energy.",
-        "category": "Emotion"
-    },
-    {
-        "word": "Bucolic",
-        "definition": "Relating to the pleasant aspects of the countryside and country life.",
-        "category": "Nature"
-    },
-    {
-        "word": "Pulchritude",
-        "definition": "Beauty.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Raconteur",
-        "definition": "A person who tells anecdotes in a skillful and amusing way.",
-        "category": "Other"
-    },
-    {
-        "word": "Sagacious",
-        "definition": "Having or showing keen mental discernment and good judgment.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Inequitable",
-        "definition": "Unfair; not equitable or impartial.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Pluviophile",
-        "definition": "A lover of rain; someone who finds joy and peace during rainy days.",
-        "category": "Nature"
-    },
-    {
-        "word": "Aesthetic",
-        "definition": "Concerned with beauty or the appreciation of beauty.",
-        "category": "Abstract Concept"
-    },
-    {
-        "word": "Ecliptic",
-        "definition": "Relating to an eclipse or to the apparent path of the sun and planets.",
-        "category": "Nature"
-    },
-    {
-        "word": "Vicarious",
-        "definition": "Experienced in the imagination through the feelings or actions of another person.",
-        "category": "Abstract Concept"
+        "category": "Sound",
+        "example": "The sonorous tones of the organ filled the cathedral.",
+        "synonyms": ["resonant", "rich", "booming"],
+        "antonyms": ["weak", "thin"],
+        "part_of_speech": "adjective",
+        "pronunciation": "/SOH-nuh-ruhs/"
     }
 ]
