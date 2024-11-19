@@ -13,14 +13,5 @@ audiobookRouter.get("/audiobooks/:id", getAudiobookById);
 audiobookRouter.delete('/audiobooks/:id', isAuthenticated, author, deleteAudiobook);
 audiobookRouter.post('/audiobooks/review', addReview);
 
-// audiobookRouter.post('/audiobooks/upload', audiobookUpload, (req, res) => {
-//     if (!req.file) {
-//         return res.status(400).json({ error: "No file uploaded" });
-//     }
-//     res.json({ message: "File uploaded successfully", fileUrl: req.file.path });
-// });
-
-// audiobookRouter.post('/audiobooks/uploadWithFiles', isAuthenticated, admin, addAudiobookWithFiles);
-
 
 export default audiobookRouter;

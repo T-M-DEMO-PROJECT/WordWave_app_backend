@@ -2,8 +2,9 @@ import { UserModel } from "../models/user.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { addRegisterValidator, addLoginValidator } from "../validators/user.js";
+import { getStreakMessage } from "../utils/streakMessages.js";
 import { sendEmail } from '../utils/emailService.js';
-import { registrationEmailTemplate } from '../templates/emailTemplates.js';
+import { registrationEmailTemplate } from '../templates/emailTemplates.js'
 
 export const addRegister = async (req, res, next) => {
     try {
@@ -161,6 +162,9 @@ export const updateStreak = async (req, res, next) => {
                 user.streak.currentStreak = 1;
             }
         }
+        // Generate streak message
+        const message = getStreakMessage(user.streak.currentStreak);
+        console.log(message); // You can log it
 
         user.streak.lastActiveDate = today; // Update last active date
         await user.save();
