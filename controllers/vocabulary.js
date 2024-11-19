@@ -25,7 +25,10 @@ export const addVocabulary = async (req, res, next) => {
         const vocabulary = await VocabularyModel.create({
             word,
             meaning,
-            exampleSentence,
+            exampleSentence, 
+            synonyms, 
+            antonyms, 
+            partOfSpeech,
             audiobook: audiobookId,
             user: req.auth.id, // Assuming the authenticated user ID is available in `req.auth.id`
         });
@@ -39,33 +42,41 @@ export const addVocabulary = async (req, res, next) => {
     }
 };
 
-export const getRandomVocabulary = (req, res) => {
+export const getRandomVocabulary = async (req, res) => {
     try {
-        const { category, difficulty } = req.query; // Read filters from query parameters
+        const { category, difficulty } = req.query;
 
-        // Filter words based on provided parameters
-        let filteredWords = words;
-        if (category) {
-            filteredWords = filteredWords.filter((word) => word.category === category);
+        // Build the query object dynamically
+        const query = {};
+        if (category) query.category = category;
+        if (difficulty) query.difficulty = difficulty;
+
+        // Fetch filtered words from the database
+        const words = await VocabularyModel.find(query);
+
+        // Handle case where no words match the criteria
+        if (words.length === 0) {
+            return res.status(404).json({
+                error: "No words found matching the criteria."
+            });
         }
-        if (difficulty) {
-            filteredWords = filteredWords.filter((word) => word.difficulty === difficulty);
-        }
 
-        // If no words match the filter, return an error
-        if (filteredWords.length === 0) {
-            return res.status(404).json({ error: "No words found matching the criteria" });
-        }
+        // Select a random word from the filtered list
+        const randomIndex = Math.floor(Math.random() * words.length);
+        const randomWord = words[randomIndex];
 
-        // Pick a random word from the filtered words
-        const randomIndex = Math.floor(Math.random() * filteredWords.length);
-        const randomWord = filteredWords[randomIndex];
-
+        // Respond with the randomly selected word
         return res.status(200).json({
-            message: "Random word fetched successfully",
+            message: "Random vocabulary fetched successfully.",
             data: randomWord,
         });
     } catch (error) {
-        res.status(500).json({ error: "An error occurred" });
+        console.error("Error fetching random vocabulary:", error);
+
+        // Respond with an internal server error status
+        return res.status(500).json({
+            error: "An internal server error occurred.",
+        });
     }
 };
+
