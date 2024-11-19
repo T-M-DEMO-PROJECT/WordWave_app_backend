@@ -18,6 +18,8 @@ const audiobookSchema = new Schema({
     timestamps: true,
 });
 
+audiobookSchema.index({ category: 'text', title: 'text'});
+
 audiobookSchema.plugin(toJSON);
 
 export const AudiobookModel = model("Audiobook", audiobookSchema);

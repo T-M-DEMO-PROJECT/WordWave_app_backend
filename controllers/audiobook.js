@@ -18,8 +18,13 @@ export const addAudiobook = async (req, res, next) => {
 
 export const listAudiobooks = async (req, res, next) => {
     try {
-        const audiobooks = await AudiobookModel.find();
-        res.json(audiobooks);
+        const { filter = "{}", sort = "{}", limit = 10, skip = 0 } = req.query;
+        //Fetch Audiobook from database
+        const audiobooks = await AudiobookModel.find(JSON.parse(filter))
+        .sort(JSON.parse(sort))
+        .limit(limit)
+        .skip(skip);
+        res.status(200).json(audiobooks);
     } catch (error) {
         next(error);
     }
@@ -60,6 +65,36 @@ export const updateAudiobook = async (req, res, next) => {
         res.status(200).json({ message: "Audiobook updated successfully", data: audiobook });
     } catch (error) {
         next(error);
+    }
+};
+
+export const countAudiobooks = async (req, res, next) => {
+    try {
+        const { filter = "{}" } = req.query;
+        //count todos in database
+        const count = await AudiobookModel.countDocuments(JSON.parse(filter));
+        //Responto request
+        res.json({ count });
+    } catch (error) {
+        next(error);
+    }
+};
+
+export const deleteAudiobook = async (req, res, next) => {
+    try {
+        const { id } = req.params; // Get the audiobook ID from the request parameters
+
+        // Find the audiobook by ID and delete it
+        const audiobook = await AudiobookModel.findByIdAndDelete(id);
+
+        if (!audiobook) {
+            return res.status(404).json({ error: "Audiobook not found" });
+        }
+
+        // Respond to the request
+        return res.status(200).json({ message: "Audiobook deleted successfully" });
+    } catch (error) {
+        next(error); // Pass the error to your global error handler
     }
 };
 

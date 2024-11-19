@@ -2,6 +2,8 @@ import { UserModel } from "../models/user.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { addRegisterValidator, addLoginValidator } from "../validators/user.js";
+import { sendEmail } from '../utils/emailService.js';
+import { registrationEmailTemplate } from '../templates/emailTemplates.js';
 
 export const addRegister = async (req, res, next) => {
     try {
@@ -18,11 +20,23 @@ export const addRegister = async (req, res, next) => {
         //hash their password
         const hashedPassword = bcrypt.hashSync(value.password, 10);
         //save user into database
-        await UserModel.create({
+        const newUser = await UserModel.create({
             ...value,
-
             password: hashedPassword
         });
+
+        // Send welcome email
+        try {
+            await sendEmail(
+                value.email,
+                'Welcome to Our Platform!',
+                registrationEmailTemplate(value.name)
+            );
+        } catch (emailError) {
+            console.error('Failed to send welcome email:', emailError);
+            // Continue with registration even if email fails
+        }
+
         res.json('user registered successfully');
     } catch (error) {
         next(error);
@@ -73,14 +87,6 @@ export const getProfile = async(req, res, next) => {
     }
 }
 
-// export const addLogout = (req, res, next) => {
-//     try {
-//         return res.json('logged out');
-//     } catch (error) {
-//         next(error);
-//     }
-// }
-
 export const addLogout = (req, res, next) => {
     try {
         // Optionally, clear a cookie for token storage
@@ -128,5 +134,43 @@ export const updatedProfile = async (req, res, next) => {
         res.json({ message: 'User profile updated successfully', user: updatedUser });
     } catch (error) {
         next(error);
+    }
+};
+
+// Update Streak Logic
+export const updateStreak = async (req, res, next) => {
+    try {
+        const user = await UserModel.findById(req.auth.id); // Get the authenticated user
+        const today = new Date();
+        const lastActiveDate = user.streak.lastActiveDate;
+
+        if (!lastActiveDate) {
+            // First activity
+            user.streak.currentStreak = 1;
+        } else {
+            const diffInDays = Math.floor((today - new Date(lastActiveDate)) / (1000 * 60 * 60 * 24));
+
+            if (diffInDays === 1) {
+                // Continue streak
+                user.streak.currentStreak += 1;
+                if (user.streak.currentStreak > user.streak.longestStreak) {
+                    user.streak.longestStreak = user.streak.currentStreak;
+                }
+            } else if (diffInDays > 1) {
+                // Streak broken, reset current streak
+                user.streak.currentStreak = 1;
+            }
+        }
+
+        user.streak.lastActiveDate = today; // Update last active date
+        await user.save();
+
+        res.status(200).json({
+            message: "Streak updated successfully",
+            currentStreak: user.streak.currentStreak,
+            longestStreak: user.streak.longestStreak,
+        });
+    } catch (error) {
+        next(error); // Forward the error to your global error handler
     }
 };
