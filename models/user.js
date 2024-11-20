@@ -4,7 +4,7 @@ import { Schema, model } from "mongoose";
 const userSchema = new Schema({
     name:{type: String, required: true},
     email:{type: String, required: true, unique: true, index: true},
-    password:{type: String, required: true},
+    password:{type: String, required: true, select: true},
     author: { type: Boolean, default: false },
     streak: {
         currentStreak: { type: Number, default: 0 }, // Tracks the ongoing streak

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addAudiobook, listAudiobooks, updateAudiobook, getAudiobookById, countAudiobooks, deleteAudiobook, addReview } from "../controllers/audiobook.js";
-import { isAuthenticated, author, updateStreak } from "../middlewares/auth.js";
+import { isAuthenticated, author } from "../middlewares/auth.js";
 import { audiobookUpload } from "../middlewares/upload.js";
 
 const audiobookRouter = Router();

@@ -138,43 +138,59 @@ export const updatedProfile = async (req, res, next) => {
     }
 };
 
-// Update Streak Logic
 export const updateStreak = async (req, res, next) => {
     try {
         const user = await UserModel.findById(req.auth.id); // Get the authenticated user
         const today = new Date();
-        const lastActiveDate = user.streak.lastActiveDate;
+        today.setHours(0, 0, 0, 0); // Normalize to midnight for consistency
+
+        const lastActiveDate = user.streak.lastActiveDate
+            ? new Date(user.streak.lastActiveDate)
+            : null;
 
         if (!lastActiveDate) {
             // First activity
             user.streak.currentStreak = 1;
+            console.log("First activity detected, setting streak to 1.");
         } else {
-            const diffInDays = Math.floor((today - new Date(lastActiveDate)) / (1000 * 60 * 60 * 24));
+            lastActiveDate.setHours(0, 0, 0, 0); // Normalize
+
+            const diffInDays = Math.floor(
+                (today - lastActiveDate) / (1000 * 60 * 60 * 24)
+            );
+            console.log("Difference in days since last active:", diffInDays);
 
             if (diffInDays === 1) {
                 // Continue streak
                 user.streak.currentStreak += 1;
-                if (user.streak.currentStreak > user.streak.longestStreak) {
-                    user.streak.longestStreak = user.streak.currentStreak;
-                }
+                user.streak.longestStreak = Math.max(
+                    user.streak.longestStreak,
+                    user.streak.currentStreak
+                );
+                console.log("Continuing streak. New current streak:", user.streak.currentStreak);
             } else if (diffInDays > 1) {
-                // Streak broken, reset current streak
+                // Streak broken, reset to 0 or 1 as needed
+                console.log("Streak broken. Resetting current streak.");
                 user.streak.currentStreak = 1;
             }
         }
-        // Generate streak message
-        const message = getStreakMessage(user.streak.currentStreak);
-        console.log(message); // You can log it
 
         user.streak.lastActiveDate = today; // Update last active date
-        await user.save();
+        // Save the user and check for success
+        const savedUser = await user.save();
+        if (!savedUser) {
+            console.error("Failed to save user data after updating streak.");
+            return res.status(500).json({ error: "Failed to update streak." });
+        }
+        const message = getStreakMessage(user.streak.currentStreak);
 
-        res.status(200).json({
-            message: "Streak updated successfully",
+        return res.status(200).json({
+            message,
             currentStreak: user.streak.currentStreak,
             longestStreak: user.streak.longestStreak,
+            lastActiveDate: user.streak.lastActiveDate,
         });
     } catch (error) {
-        next(error); // Forward the error to your global error handler
+        return next(error); // Forward error to global handler
     }
 };
