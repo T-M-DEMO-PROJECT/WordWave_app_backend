@@ -42,26 +42,21 @@ export const addVocabulary = async (req, res, next) => {
     }
 };
 
+
 export const getRandomVocabulary = async (req, res) => {
     try {
-        const { category, difficulty } = req.query;
+        // Read the words from the word.json file
+        const data = await fs.readFile(new URL("../data/word.json", import.meta.url));
+        const words = JSON.parse(data); // Parse the JSON data
 
-        // Build the query object dynamically
-        const query = {};
-        if (category) query.category = category;
-        if (difficulty) query.difficulty = difficulty;
-
-        // Fetch filtered words from the database
-        const words = await VocabularyModel.find(query);
-
-        // Handle case where no words match the criteria
+        // Handle case where no words are found in the JSON file
         if (words.length === 0) {
             return res.status(404).json({
-                error: "No words found matching the criteria."
+                error: "No words found in the database."
             });
         }
 
-        // Select a random word from the filtered list
+        // Select a random word from the list of all words
         const randomIndex = Math.floor(Math.random() * words.length);
         const randomWord = words[randomIndex];
 
@@ -80,3 +75,50 @@ export const getRandomVocabulary = async (req, res) => {
     }
 };
 
+
+// Function to fetch two random words
+export const getTwoRandomWords = async (req, res) => {
+    try {
+        // Read the words from the word.json file
+        const data = await fs.readFile(new URL("../data/word.json", import.meta.url));
+        const words = JSON.parse(data); // Parse the JSON data
+
+        // Handle case where no words are found in the JSON file
+        if (!Array.isArray(words) || words.length === 0) {
+            return res.status(404).json({
+                error: "No words found in the database."
+            });
+        }
+
+        // Handle case where there is only one word
+        if (words.length === 1) {
+            return res.status(200).json({
+                message: "Only one word available.",
+                data: [words[0]], // Return the only word available
+            });
+        }
+
+        // Select two unique random words
+        const randomIndices = new Set();
+        while (randomIndices.size < 2) {
+            const randomIndex = Math.floor(Math.random() * words.length);
+            randomIndices.add(randomIndex);
+        }
+
+        // Get the random words based on the generated indices
+        const randomWords = Array.from(randomIndices).map(index => words[index]);
+
+        // Respond with the randomly selected words
+        return res.status(200).json({
+            message: "Two random vocabulary words fetched successfully.",
+            data: randomWords,
+        });
+    } catch (error) {
+        console.error("Error fetching random vocabulary words:", error);
+
+        // Respond with an internal server error status
+        return res.status(500).json({
+            error: "An internal server error occurred while fetching random words.",
+        });
+    }
+};

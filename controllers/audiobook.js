@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { AudiobookModel } from "../models/audiobook.js";
 import { UserModel } from "../models/user.js";
 import { addAudiobookValidator, updateAudiobookValidator } from "../validators/audiobook.js";
@@ -33,10 +34,14 @@ export const listAudiobooks = async (req, res, next) => {
 export const getAudiobookById = async (req, res, next) => {
     try {
         const { id } = req.params; // Extract the audiobook ID from the request parameters
+        console.log("Received ID:", id); // Log the received ID
 
+        // Validate if the ID is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: "Invalid ID format" });
+        }
         // Find audiobook by ID
         const audiobook = await AudiobookModel.findById(id);
-
         if (!audiobook) {
             return res.status(404).json({ error: "Audiobook not found" });
         }
@@ -78,6 +83,14 @@ export const countAudiobooks = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+// Example endpoint for when a user finishes listening to an audiobook
+export const audiobookFinished = async (req, res) => {
+    // Logic to handle audiobook completion, e.g., updating user progress
+
+    // Now fetch two random words
+    return getTwoRandomWords(req, res);
 };
 
 export const deleteAudiobook = async (req, res, next) => {

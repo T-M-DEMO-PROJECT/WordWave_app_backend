@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addAudiobook, listAudiobooks, updateAudiobook, getAudiobookById, countAudiobooks, deleteAudiobook, addReview } from "../controllers/audiobook.js";
+import { addAudiobook, listAudiobooks, updateAudiobook, getAudiobookById, countAudiobooks, deleteAudiobook, audiobookFinished, addReview } from "../controllers/audiobook.js";
 import { isAuthenticated, author } from "../middlewares/auth.js";
 import { audiobookUpload } from "../middlewares/upload.js";
 
@@ -12,6 +12,8 @@ audiobookRouter.get('/audiobooks', listAudiobooks);
 audiobookRouter.get("/audiobooks/:id", getAudiobookById);
 audiobookRouter.delete('/audiobooks/:id', isAuthenticated, author, deleteAudiobook);
 audiobookRouter.post('/audiobooks/review', addReview);
+
+audiobookRouter.post('/audiobooks/finished', isAuthenticated, audiobookFinished);
 
 
 export default audiobookRouter;
