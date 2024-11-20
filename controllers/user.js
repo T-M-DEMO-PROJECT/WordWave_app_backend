@@ -5,6 +5,7 @@ import { addRegisterValidator, addLoginValidator } from "../validators/user.js";
 import { getStreakMessage } from "../utils/streakMessages.js";
 import { sendEmail } from '../utils/emailService.js';
 import { registrationEmailTemplate } from '../templates/emailTemplates.js'
+import { author } from "../middlewares/auth.js";
 
 export const addRegister = async (req, res, next) => {
     try {
@@ -63,7 +64,7 @@ export const addLogin = async (req, res, next) => {
         }
         //sign a token for the user
         const token = jwt.sign(
-            { id: user.id, admin: user.admin }, // Include amin in the token payload
+            { id: user.id, author: user.author }, // Include amin in the token payload
             process.env.JWT_PRIVATE_KEY,
             { expiresIn: '24h' }
         );

@@ -24,6 +24,6 @@ app.use(emailRouter);
 
 //port listening
 const PORT =3100;
-app.listen(PORT, () => { 
+app.listen(3100, () => { 
     console.log(`Server running on port${PORT}`);
 });
