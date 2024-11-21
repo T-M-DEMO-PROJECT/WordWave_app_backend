@@ -24,7 +24,7 @@ export const addVocabulary = async (req, res, next) => {
         // Save the vocabulary word
         const vocabulary = await VocabularyModel.create({
             word,
-            meaning,
+            definition,
             exampleSentence, 
             synonyms, 
             antonyms, 
