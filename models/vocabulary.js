@@ -9,7 +9,7 @@ const VocabularySchema = new Schema(
             required: [true, "Word is required"],
             unique: true,
         },
-        meaning: {
+        definition: {
             type: String,
             required: [true, "Meaning is required"],
         },
