@@ -13,7 +13,7 @@ export const addVocabulary = async (req, res, next) => {
             return res.status(400).json({ error: error.details[0].message });
         }
 
-        const { word, meaning, exampleSentence, audiobookId } = value;
+        const { word, meaning, exampleSentence, synonyms, antonyms, partOfSpeech, audiobookId } = value;
 
         // Check if audiobook exists
         const audiobook = await AudiobookModel.findById(audiobookId);
