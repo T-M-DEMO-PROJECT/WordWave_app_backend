@@ -11,7 +11,7 @@ const VocabularySchema = new Schema(
         },
         definition: {
             type: String,
-            required: [true, "Meaning is required"],
+            required: [true, "Definition is required"],
         },
         partOfSpeech: {
             type: String,
