@@ -67,8 +67,8 @@ export const addVocabularyValidator = Joi.object({
     word: Joi.string().required().messages({
         "string.empty": "Word is required",
     }),
-    definition: Joi.string().required().messages({
-        "string.empty": "Definition is required",
+    meaning: Joi.string().required().messages({
+        "string.empty": "Meaning is required",
     }),
     exampleSentence: Joi.string().required().messages({
         "string.empty": "Example sentence is required",

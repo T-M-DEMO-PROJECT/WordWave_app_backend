@@ -9,9 +9,9 @@ const VocabularySchema = new Schema(
             required: [true, "Word is required"],
             unique: true,
         },
-        definition: {
+        meaning: {
             type: String,
-            required: [true, "Definition is required"],
+            required: [true, "Meaning is required"],
         },
         partOfSpeech: {
             type: String,
